@@ -13,3 +13,4 @@
 # system / ide files
 .idea/
 .ruby-version
+*.gem

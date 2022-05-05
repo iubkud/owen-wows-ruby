@@ -23,8 +23,8 @@ Or install it yourself as:
 ## Usage
 
 ```azure
-client = OwenWows::Client.new()
-client.wows
+client = OwenWows::Client.new
+client.list
 client.random_wow
 client.movies
 client.directors

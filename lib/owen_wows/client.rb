@@ -22,21 +22,31 @@ module OwenWows
     end
 
     def list(results: CURRENT_MOVIE_COUNT)
-      wows = connection.get("random", { results: results }).body
-      wows.map { |wow| OwenWows::Wow.new(wow) }
+      wows = search(results: results)
+      build_list(wows)
     end
 
-    def with_director(director)
-      wows = connection.get("random", { director: director }).body
-      wows.map { |wow| OwenWows::Wow.new(wow) }
+    def with_director(director, results: CURRENT_MOVIE_COUNT)
+      wows = search(director: director, results: results)
+      build_list(wows)
+    end
+
+    def from_year(year, results: CURRENT_MOVIE_COUNT)
+      wows = search(year: year, results: results)
+      build_list(wows)
     end
 
     def in_movie(movie, exact: true, results: CURRENT_MOVIE_COUNT)
-      wows = connection.get("random", { movie: movie, results: results }).body
-      all = wows.map { |wow| OwenWows::Wow.new(wow) }
+      wows = search(movie: movie, results: results)
+      all = build_list(wows)
       return all unless exact
 
       all.select { |wow| wow["movie"] == movie }
+    end
+
+    def search(**kwargs)
+      wows = connection.get("random", **kwargs).body
+      build_list(wows)
     end
 
     def all_movies
@@ -45,6 +55,12 @@ module OwenWows
 
     def all_directors
       connection.get("directors").body
+    end
+
+    private
+
+    def build_list(wows)
+      wows.map { |wow| OwenWows::Wow.new(wow) }
     end
   end
 end

@@ -19,46 +19,46 @@ Or install it yourself as:
     $ gem install owen_wows
 
 ## Usage
+```ruby
+require 'owen_wows'
+wows = OwenWows::Client.new
 
-    require 'owen_wows;
-    wows = OwenWows::Client.new
-    
-    # get a random wow
-    wows.random_wow
+# get a random wow
+wows.random_wow
 
-    # list all wows
-    wows.list
-
+# list all wows
+wows.list
+```
 Each call returns an array of `OwenWows::Wow` objects.
 
 Some filter options:
+```ruby
+# from year 
+wows.from_year("2000")
 
-    # from year
-    wows.from_year("2000")
+# with director
+wows.with_director("wes anderson")
 
-    # with director
-    wows.with_director("wes anderson")
+# wows in movie
+wows.in_movie("Cars")
 
-    # wows in movie
-    wows.in_movie("Cars")
-
-    # by default, movie is an exact search
-    # specify exact: false to string search
-    wows.in_movie("Cars", exact: false)
-
+# by default, movie is an exact search
+# specify exact: false to string search
+wows.in_movie("Cars", exact: false)
+```
 You can specify the maximum number of results returned in any filter by passing a `results` argument.
-
-    wows.in_movie("Cars", exact: false, results: 10)
-
+```ruby
+wows.in_movie("Cars", exact: false, results: 10)
+```
 Otherwise, you can search by any combination of parameters.
-
-    wows.search(movie: "Cars", year: "2000")
-
+```ruby
+wows.search(movie: "Cars", year: "2000")
+```
 Get lists of movies and directors.
-
-    wows.movies
-    wows.directors
-
+```ruby
+wows.movies
+wows.directors
+```
 
 ## Development
 

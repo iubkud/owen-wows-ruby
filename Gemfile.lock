@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    owen_wows (0.1.0)
+    owen_wows (0.2.0)
       faraday (= 2.2.0)
       hashie (= 5.0.0)
 

@@ -11,7 +11,5 @@ require "owen_wows"
 # require "pry"
 # Pry.start
 
-client = OwenWows::Client.new()
-
 require "irb"
 IRB.start(__FILE__)

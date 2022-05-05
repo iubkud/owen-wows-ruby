@@ -3,6 +3,8 @@
 require "faraday"
 require "owen_wows/wow"
 module OwenWows
+  # Class for handling the API connection to the
+  # Owen Wilson Random Wow API
   class Client
     BASE_URL = "https://owen-wilson-wow-api.herokuapp.com/wows/"
     CURRENT_MOVIE_COUNT = 91
@@ -24,6 +26,11 @@ module OwenWows
     def list(results: CURRENT_MOVIE_COUNT)
       wows = search(results: results)
       build_list(wows)
+    end
+
+    def random_wow
+      wow = search
+      build_list(wow)
     end
 
     def with_director(director, results: CURRENT_MOVIE_COUNT)
